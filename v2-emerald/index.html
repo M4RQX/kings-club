@@ -25,8 +25,8 @@
     --gold-lo: #877038;
     --green-accent: #6FBF8B;
     --text: #F2EFE5;
-    --muted: #968F84;
-    --muted-2: #5C574E;
+    --muted: #B8B2A6;
+    --muted-2: #837C6E;
     --display: "Montserrat", system-ui, sans-serif;
     --sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   }
@@ -205,11 +205,11 @@
     background: var(--gold); opacity: 0.0;
   }
   .about-text .lead {
-    font-family: var(--display); font-weight: 600; text-transform: none;
-    font-size: clamp(20px, 2vw, 27px); line-height: 1.4; letter-spacing: -0.01em;
-    margin-bottom: 20px;
+    font-family: var(--sans); font-weight: 400;
+    font-size: 19px; line-height: 1.65; color: var(--text);
+    margin-bottom: 18px;
   }
-  .about-text .lead em { font-style: normal; color: var(--gold); }
+  .about-text .lead em { font-style: normal; color: var(--gold); font-weight: 600; }
   .about-text p { color: var(--muted); font-size: 15.5px; margin-bottom: 16px; line-height: 1.75; }
   .about-sign {
     margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line-soft);
@@ -243,24 +243,28 @@
     padding: 18px 20px; font-size: 13px; color: var(--muted); line-height: 1.6;
   }
   .serv-note strong { color: var(--text); font-weight: 600; }
-  .menu { border-top: 1px solid var(--line-soft); }
+  .menu { border-top: 1px solid var(--line); }
   .menu-row {
-    display: grid; grid-template-columns: 64px 1fr auto; gap: 24px;
-    align-items: center; padding: 26px 18px;
+    display: block; padding: 21px 6px;
     border-bottom: 1px solid var(--line-soft);
-    transition: background .3s ease, padding .3s ease; position: relative;
+    transition: background .3s ease, padding .3s ease;
   }
-  .menu-row::before {
-    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
-    background: var(--gold); transform: scaleY(0); transition: transform .35s ease; transform-origin: top;
+  .menu-row:hover { background: var(--surface); padding-left: 16px; padding-right: 16px; }
+  .menu-line { display: flex; align-items: baseline; gap: 11px; }
+  .menu-name {
+    font-family: var(--display); font-weight: 700; font-size: 17px;
+    text-transform: uppercase; letter-spacing: 0.02em; color: var(--text);
+    transition: color .3s ease;
   }
-  .menu-row:hover { background: var(--surface); padding-left: 28px; }
-  .menu-row:hover::before { transform: scaleY(1); }
-  .menu-num { font-family: var(--display); font-weight: 700; font-size: 14px; color: var(--gold); letter-spacing: 0.08em; }
-  .menu-info h3 { font-family: var(--display); font-weight: 700; font-size: 18px; text-transform: uppercase; letter-spacing: 0.01em; }
-  .menu-info p { color: var(--muted); font-size: 13.5px; margin-top: 5px; }
-  .menu-price { font-family: var(--display); font-weight: 700; font-size: 21px; color: var(--gold); white-space: nowrap; }
-  .menu-price small { font-family: var(--sans); font-weight: 400; font-size: 11px; color: var(--muted-2); }
+  .menu-row:hover .menu-name { color: var(--gold-hi); }
+  .menu-dots { flex: 1; border-bottom: 1px dotted var(--muted-2); transform: translateY(-0.28em); }
+  .menu-price { font-family: var(--display); font-weight: 700; font-size: 18px; color: var(--gold); white-space: nowrap; }
+  .menu-sub { display: flex; justify-content: space-between; align-items: baseline; gap: 18px; margin-top: 7px; }
+  .menu-desc { color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+  .menu-time {
+    font-family: var(--display); font-weight: 500; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-2); white-space: nowrap;
+  }
 
   /* ===== Galeria ===== */
   .gallery { background: var(--bg-soft); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
@@ -399,8 +403,7 @@
     .team { grid-template-columns: 1fr; max-width: 460px; }
     .reviews-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
     .contact-grid { grid-template-columns: 1fr; }
-    .menu-row { grid-template-columns: 44px 1fr; row-gap: 4px; }
-    .menu-price { grid-column: 2; }
+    .menu-name { font-size: 14.5px; }
     .nav-links { display: none; }
     .footer-inner { flex-direction: column; text-align: center; }
   }
@@ -546,44 +549,36 @@
 
       <div class="menu reveal">
         <a href="#contactos" class="menu-row">
-          <span class="menu-num">01</span>
-          <div class="menu-info"><h3>Corte de Cabelo</h3><p>Corte à medida, com tesoura, máquina e contornos definidos.</p></div>
-          <span class="menu-price">12€ <small>/30 min</small></span>
+          <div class="menu-line"><span class="menu-name">Corte de Cabelo</span><span class="menu-dots"></span><span class="menu-price">12€</span></div>
+          <div class="menu-sub"><span class="menu-desc">Corte à medida, com tesoura, máquina e contornos definidos.</span><span class="menu-time">30 min</span></div>
         </a>
         <a href="#contactos" class="menu-row">
-          <span class="menu-num">02</span>
-          <div class="menu-info"><h3>Corte + Lavagem</h3><p>Corte completo de cabelo com lavagem incluída.</p></div>
-          <span class="menu-price">14€ <small>/30 min</small></span>
+          <div class="menu-line"><span class="menu-name">Corte + Lavagem</span><span class="menu-dots"></span><span class="menu-price">14€</span></div>
+          <div class="menu-sub"><span class="menu-desc">Corte completo de cabelo com lavagem incluída.</span><span class="menu-time">30 min</span></div>
         </a>
         <a href="#contactos" class="menu-row">
-          <span class="menu-num">03</span>
-          <div class="menu-info"><h3>Corte + Lavagem + Penteado</h3><p>Corte, lavagem e penteado — sais pronto e impecável.</p></div>
-          <span class="menu-price">18€ <small>/60 min</small></span>
+          <div class="menu-line"><span class="menu-name">Corte + Lavagem + Penteado</span><span class="menu-dots"></span><span class="menu-price">18€</span></div>
+          <div class="menu-sub"><span class="menu-desc">Corte, lavagem e penteado — sais pronto e impecável.</span><span class="menu-time">60 min</span></div>
         </a>
         <a href="#contactos" class="menu-row">
-          <span class="menu-num">04</span>
-          <div class="menu-info"><h3>Corte + Sobrancelha</h3><p>Corte de cabelo com alinhamento de sobrancelha.</p></div>
-          <span class="menu-price">14€ <small>/30 min</small></span>
+          <div class="menu-line"><span class="menu-name">Corte + Sobrancelha</span><span class="menu-dots"></span><span class="menu-price">14€</span></div>
+          <div class="menu-sub"><span class="menu-desc">Corte de cabelo com alinhamento de sobrancelha.</span><span class="menu-time">30 min</span></div>
         </a>
         <a href="#contactos" class="menu-row">
-          <span class="menu-num">05</span>
-          <div class="menu-info"><h3>Barba</h3><p>Barba aparada e desenhada com acabamento cuidado.</p></div>
-          <span class="menu-price">9€ <small>/30 min</small></span>
+          <div class="menu-line"><span class="menu-name">Barba</span><span class="menu-dots"></span><span class="menu-price">9€</span></div>
+          <div class="menu-sub"><span class="menu-desc">Barba aparada e desenhada com acabamento cuidado.</span><span class="menu-time">30 min</span></div>
         </a>
         <a href="#contactos" class="menu-row">
-          <span class="menu-num">06</span>
-          <div class="menu-info"><h3>Barba + Corte de Cabelo</h3><p>O combo completo: corte de cabelo e barba numa só visita.</p></div>
-          <span class="menu-price">17€ <small>/60 min</small></span>
+          <div class="menu-line"><span class="menu-name">Barba + Corte de Cabelo</span><span class="menu-dots"></span><span class="menu-price">17€</span></div>
+          <div class="menu-sub"><span class="menu-desc">O combo completo: corte de cabelo e barba numa só visita.</span><span class="menu-time">60 min</span></div>
         </a>
         <a href="#contactos" class="menu-row">
-          <span class="menu-num">07</span>
-          <div class="menu-info"><h3>Hidratação Capilar</h3><p>Tratamento de hidratação para o cabelo e o couro cabeludo.</p></div>
-          <span class="menu-price">15€ <small>/30 min</small></span>
+          <div class="menu-line"><span class="menu-name">Hidratação Capilar</span><span class="menu-dots"></span><span class="menu-price">15€</span></div>
+          <div class="menu-sub"><span class="menu-desc">Tratamento de hidratação para o cabelo e o couro cabeludo.</span><span class="menu-time">30 min</span></div>
         </a>
         <a href="#contactos" class="menu-row">
-          <span class="menu-num">08</span>
-          <div class="menu-info"><h3>Rapadela</h3><p>Corte rápido à máquina, do início ao fim.</p></div>
-          <span class="menu-price">7€ <small>/15 min</small></span>
+          <div class="menu-line"><span class="menu-name">Rapadela</span><span class="menu-dots"></span><span class="menu-price">7€</span></div>
+          <div class="menu-sub"><span class="menu-desc">Corte rápido à máquina, do início ao fim.</span><span class="menu-time">15 min</span></div>
         </a>
       </div>
     </div>
