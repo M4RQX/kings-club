@@ -3,22 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=./v1-luxury-royal/" />
-  <link rel="canonical" href="./v1-luxury-royal/" />
-  <title>King's Club Barbearia</title>
+  <title>King's Club Barbearia — Versões do site</title>
+  <meta name="description" content="King's Club Barbearia — escolhe a versão do site." />
   <style>
-    html, body { height: 100%; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: #1C1815;
-      color: #F5F1E8;
-      font-family: system-ui, -apple-system, sans-serif;
-      display: grid;
-      place-items: center;
+      min-height: 100vh;
+      background: #131312;
+      color: #F2EFE6;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 72px 24px 40px;
     }
-    a { color: #CBA55C; text-decoration: none; letter-spacing: 0.04em; }
+    .logo {
+      width: 110px; height: 110px; border-radius: 50%;
+      object-fit: cover; border: 1px solid rgba(201,165,92,0.5);
+      box-shadow: 0 0 50px rgba(201,165,92,0.18);
+    }
+    h1 {
+      margin-top: 26px; font-size: 26px; font-weight: 700;
+      letter-spacing: 0.01em; text-align: center;
+    }
+    .sub {
+      margin-top: 10px; color: #8E867A; font-size: 14px;
+      text-transform: uppercase; letter-spacing: 0.22em;
+    }
+    .grid {
+      margin-top: 52px; width: 100%; max-width: 940px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    }
+    .card {
+      background: #1B1B19; border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px; overflow: hidden;
+      transition: transform .3s ease, border-color .3s ease;
+      display: flex; flex-direction: column;
+    }
+    a.card:hover { transform: translateY(-6px); border-color: rgba(201,165,92,0.55); }
+    .swatch {
+      height: 116px; position: relative;
+      display: flex; align-items: flex-end; gap: 8px; padding: 16px;
+    }
+    .swatch.v1 { background: linear-gradient(135deg, #1C1815, #2C2822); }
+    .swatch.v2 { background: linear-gradient(135deg, #0D1F15, #1E4530); }
+    .swatch.v3 { background: linear-gradient(135deg, #242424, #343434); }
+    .dot { width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); }
+    .card-body { padding: 22px 22px 24px; flex: 1; display: flex; flex-direction: column; }
+    .vtag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #CBA55C; font-weight: 600; }
+    .vname { margin-top: 8px; font-size: 19px; font-weight: 700; }
+    .vdesc { margin-top: 8px; color: #8E867A; font-size: 13.5px; line-height: 1.6; flex: 1; }
+    .go {
+      margin-top: 18px; font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.14em; color: #CBA55C;
+    }
+    .card.soon { opacity: 0.55; }
+    .card.soon .go { color: #6E6658; }
+    footer { margin-top: 56px; color: #5C564E; font-size: 12px; letter-spacing: 0.06em; }
+    a { text-decoration: none; color: inherit; }
+    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; max-width: 360px; } }
   </style>
 </head>
 <body>
-  <a href="./v1-luxury-royal/">King's Club Barbearia &rarr;</a>
+  <img class="logo" src="v1-luxury-royal/assets/logo.jpg" alt="King's Club Barbearia" />
+  <h1>King's Club Barbearia</h1>
+  <div class="sub">Versões do site</div>
+
+  <div class="grid">
+    <a class="card" href="./v1-luxury-royal/">
+      <div class="swatch v1">
+        <span class="dot" style="background:#1C1815"></span>
+        <span class="dot" style="background:#CBA55C"></span>
+        <span class="dot" style="background:#F5F1E8"></span>
+      </div>
+      <div class="card-body">
+        <div class="vtag">Versão 1</div>
+        <div class="vname">Luxury Royal</div>
+        <div class="vdesc">Charcoal quente e dourado. Tipografia Unbounded + DM Sans. Hero clássico e centrado.</div>
+        <div class="go">Ver versão &rarr;</div>
+      </div>
+    </a>
+
+    <a class="card" href="./v2-emerald/">
+      <div class="swatch v2">
+        <span class="dot" style="background:#0D1F15"></span>
+        <span class="dot" style="background:#C9A86A"></span>
+        <span class="dot" style="background:#7FB58E"></span>
+      </div>
+      <div class="card-body">
+        <div class="vtag">Versão 2</div>
+        <div class="vname">Emerald</div>
+        <div class="vdesc">Verde-escuro e dourado. Tipografia Montserrat + Plus Jakarta. Hero dividido e editorial.</div>
+        <div class="go">Ver versão &rarr;</div>
+      </div>
+    </a>
+
+    <div class="card soon">
+      <div class="swatch v3">
+        <span class="dot" style="background:#242424"></span>
+        <span class="dot" style="background:#3A3A3A"></span>
+        <span class="dot" style="background:#555"></span>
+      </div>
+      <div class="card-body">
+        <div class="vtag">Versão 3</div>
+        <div class="vname">Em breve</div>
+        <div class="vdesc">A terceira direção de design ainda está por definir.</div>
+        <div class="go">Brevemente</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2026 King's Club Barbearia</footer>
 </body>
 </html>

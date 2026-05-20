@@ -193,8 +193,12 @@
   }
   .hero-content { position: relative; z-index: 1; max-width: 900px; padding: 0 24px; }
 
-  .crest { width: 60px; height: 60px; margin: 0 auto 30px; color: var(--gold); }
-  .crest svg { width: 100%; height: 100%; }
+  .crest { width: 104px; height: 104px; margin: 0 auto 26px; }
+  .crest img {
+    width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 0 40px rgba(203, 165, 92, 0.18);
+  }
 
   .hero h1 {
     font-size: clamp(32px, 5.4vw, 68px);
@@ -308,7 +312,7 @@
   .gallery-grid > div:nth-child(4) { background-image: url("https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?auto=format&fit=crop&w=900&q=80"); aspect-ratio: 3/5; margin-top: -42px; }
 
   /* ===== Equipa ===== */
-  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; margin-top: 16px; }
+  .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px; margin: 16px auto 0; max-width: 720px; }
   .member { text-align: center; }
   .member-photo {
     aspect-ratio: 3/4; margin-bottom: 24px; border-radius: 3px;
@@ -357,6 +361,7 @@
   footer { padding: 60px 0 40px; border-top: 1px solid var(--line-soft); background: var(--bg-deep); }
   .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 32px; }
   .footer-brand { display: flex; align-items: center; gap: 16px; }
+  .footer-brand .footer-logo { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; }
   .footer-brand .name { font-family: var(--display); font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
   .footer-brand .tag { font-size: 10px; color: var(--muted-2); letter-spacing: 0.2em; margin-top: 5px; font-weight: 500; }
   .footer-social { display: flex; gap: 16px; }
@@ -392,9 +397,7 @@
 <nav class="nav" id="nav">
   <div class="container nav-inner">
     <a href="#top" class="brand">
-      <!-- Logo: grava o ficheiro em assets/logo.png e troca o span abaixo por:
-           <img src="assets/logo.png" alt="King's Club Barbearia" /> -->
-      <span class="brand-mark">K</span>
+      <img src="assets/logo.jpg" alt="King's Club Barbearia" />
       <span class="brand-text">King's Club<small>Barbearia</small></span>
     </a>
     <ul class="nav-links">
@@ -410,13 +413,7 @@
 <header class="hero" id="top">
   <div class="hero-content">
     <div class="crest">
-      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M8 44 L14 18 L22 32 L32 14 L42 32 L50 18 L56 44 Z" />
-        <line x1="10" y1="50" x2="54" y2="50" />
-        <circle cx="14" cy="18" r="2" fill="currentColor"/>
-        <circle cx="32" cy="14" r="2" fill="currentColor"/>
-        <circle cx="50" cy="18" r="2" fill="currentColor"/>
-      </svg>
+      <img src="assets/logo.jpg" alt="King's Club Barbearia" />
     </div>
     <span class="eyebrow">Barbearia desde 2020</span>
     <h1 class="display">Estilo digno<br/><em>de um rei</em>.</h1>
@@ -511,8 +508,7 @@
     </div>
     <div class="team-grid reveal">
       <div class="member"><div class="member-photo"></div><h4>Rui Fonseca</h4><div class="role">Master Barber · Fundador</div></div>
-      <div class="member"><div class="member-photo"></div><h4>André Costa</h4><div class="role">Senior Barber</div></div>
-      <div class="member"><div class="member-photo"></div><h4>Miguel Silva</h4><div class="role">Especialista barba</div></div>
+      <div class="member"><div class="member-photo"></div><h4>André Costa</h4><div class="role">Barber</div></div>
     </div>
   </div>
 </section>
@@ -552,7 +548,7 @@
 <footer>
   <div class="container footer-inner">
     <div class="footer-brand">
-      <span class="brand-mark">K</span>
+      <img src="assets/logo.jpg" alt="King's Club Barbearia" class="footer-logo" />
       <div>
         <div class="name">King's Club Barbearia</div>
         <div class="tag">EXCELÊNCIA · ESTILO · TRADIÇÃO</div>
