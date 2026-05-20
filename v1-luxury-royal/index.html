@@ -336,23 +336,37 @@
       url("https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2000&q=80") center/cover;
     text-align: center;
   }
-  .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 58px; }
-  .contact-cell {
-    background: var(--surface); padding: 44px 30px; border-radius: 4px;
-    border: 1px solid var(--line-soft);
+  .contact-grid { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 18px; align-items: stretch; margin-top: 58px; }
+  .hours-card {
+    background: var(--surface); border: 1px solid var(--line-soft);
+    border-radius: 6px; padding: 32px 34px; text-align: left;
+  }
+  .hours-head { display: flex; align-items: center; gap: 13px; padding-bottom: 15px; border-bottom: 1px solid var(--line-soft); }
+  .hours-head .ico { width: 30px; height: 30px; color: var(--gold); flex-shrink: 0; }
+  .hours-head .hh-label { font-family: var(--display); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text); }
+  .hours-head .hh-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .hours { list-style: none; }
+  .hours li {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 11px 2px; border-bottom: 1px solid var(--line-soft); font-size: 14px;
+  }
+  .hours li:last-child { border-bottom: none; }
+  .hours li .day { color: var(--muted); }
+  .hours li .hrs { color: var(--text); font-weight: 500; }
+  .hours li.closed .hrs { color: var(--muted-2); }
+  .hours li.today .day, .hours li.today .hrs { color: var(--gold); font-weight: 700; }
+  .hours li.today .day::after { content: " · Hoje"; font-size: 10px; letter-spacing: 0.06em; }
+  .contact-stack { display: flex; flex-direction: column; gap: 18px; }
+  .contact-item {
+    background: var(--surface); border: 1px solid var(--line-soft); border-radius: 6px;
+    padding: 22px 28px; display: flex; gap: 16px; align-items: center;
+    flex: 1; text-align: left;
     transition: border-color .35s ease, transform .35s ease;
   }
-  .contact-cell:hover { border-color: var(--line); transform: translateY(-4px); }
-  .contact-cell .icon { width: 30px; height: 30px; margin: 0 auto 18px; color: var(--gold); }
-  .contact-cell h4 {
-    font-size: 10px; text-transform: uppercase; letter-spacing: 0.26em;
-    color: var(--muted-2); margin-bottom: 14px; font-weight: 600;
-  }
-  .contact-cell p { font-size: 16px; line-height: 1.6; color: var(--text); font-weight: 400; }
-  .contact-cell p .open {
-    color: #6BCB77; font-size: 13px; display: block; margin-top: 10px;
-    font-weight: 500; letter-spacing: 0.02em;
-  }
+  .contact-item:hover { border-color: var(--line); transform: translateY(-3px); }
+  .contact-item .ico { width: 26px; height: 26px; color: var(--gold); flex-shrink: 0; }
+  .contact-item .ci-label { font-family: var(--display); font-weight: 600; font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted-2); margin-bottom: 6px; }
+  .contact-item .ci-val { font-size: 14.5px; color: var(--text); line-height: 1.5; }
 
   .booking-cta { margin-top: 74px; }
   .booking-cta .btn { padding: 21px 46px; font-size: 12px; }
@@ -522,20 +536,46 @@
     </div>
 
     <div class="contact-grid reveal">
-      <div class="contact-cell">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="3"/></svg>
-        <h4>Morada</h4>
-        <p>Praceta Prof. José Carvalho Mesquita 6, loja 11<br/>2560-271 Torres Vedras</p>
+      <div class="hours-card">
+        <div class="hours-head">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div>
+            <div class="hh-label">Horário</div>
+            <div class="hh-sub">Aberto de segunda a sábado</div>
+          </div>
+        </div>
+        <ul class="hours">
+          <li data-day="1"><span class="day">Segunda-feira</span><span class="hrs">09:00 – 20:30</span></li>
+          <li data-day="2"><span class="day">Terça-feira</span><span class="hrs">09:00 – 20:30</span></li>
+          <li data-day="3"><span class="day">Quarta-feira</span><span class="hrs">09:00 – 20:30</span></li>
+          <li data-day="4"><span class="day">Quinta-feira</span><span class="hrs">09:00 – 20:30</span></li>
+          <li data-day="5"><span class="day">Sexta-feira</span><span class="hrs">09:00 – 20:30</span></li>
+          <li data-day="6"><span class="day">Sábado</span><span class="hrs">09:00 – 19:00</span></li>
+          <li data-day="0" class="closed"><span class="day">Domingo</span><span class="hrs">Encerrado</span></li>
+        </ul>
       </div>
-      <div class="contact-cell">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <h4>Horário</h4>
-        <p>Ter–Sáb · 10h–20h30<br/>Dom–Seg · Encerrado<span class="open">● Aberto até às 20:30</span></p>
-      </div>
-      <div class="contact-cell">
-        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.84.59 2.8.72A2 2 0 0 1 22 16.92z"/></svg>
-        <h4>Contacto</h4>
-        <p>+351 926 923 540<br/>@kingsclubbarbearia1</p>
+      <div class="contact-stack">
+        <a class="contact-item" href="https://www.google.com/maps/search/Kings+Club+Barbearia+Torres+Vedras" target="_blank" rel="noopener">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="3"/></svg>
+          <div>
+            <div class="ci-label">Morada</div>
+            <div class="ci-val">Praceta Prof. José Carvalho Mesquita 6, loja 11 — 2560-271 Torres Vedras</div>
+          </div>
+        </a>
+        <a class="contact-item" href="tel:+351926923540">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.35 1.84.59 2.8.72A2 2 0 0 1 22 16.92z"/></svg>
+          <div>
+            <div class="ci-label">Telefone</div>
+            <div class="ci-val">+351 926 923 540</div>
+          </div>
+        </a>
+        <a class="contact-item" href="https://www.instagram.com/kingsclubbarbearia1" target="_blank" rel="noopener">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          <div>
+            <div class="ci-label">Instagram</div>
+            <div class="ci-val">@kingsclubbarbearia1</div>
+          </div>
+        </a>
       </div>
     </div>
 
@@ -577,6 +617,11 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const todayIdx = new Date().getDay();
+  document.querySelectorAll('.hours li').forEach(li => {
+    if (Number(li.dataset.day) === todayIdx) li.classList.add('today');
+  });
 </script>
 </body>
 </html>
