@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>King's Club — Atelier de barbearia em Torres Vedras</title>
+<meta name="description" content="King's Club Barbearia — atelier de barbearia em Torres Vedras. Cuidado, ofício e tempo para cada cliente." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg: #F4EFE4;
+    --bg-soft: #ECE5D5;
+    --surface: #E5DDC8;
+    --bg-deep: #1B1815;
+    --text: #1B1815;
+    --text-soft: #3D3631;
+    --muted: #6B655B;
+    --muted-2: #948B7C;
+    --gold: #A88547;
+    --gold-hi: #C5A565;
+    --gold-deep: #836939;
+    --line: rgba(27, 24, 21, 0.12);
+    --line-soft: rgba(27, 24, 21, 0.06);
+    --line-strong: rgba(168, 133, 71, 0.40);
+    --display: "Fraunces", "Times New Roman", serif;
+    --sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  .display {
+    font-family: var(--display);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.018em;
+  }
+  .display em {
+    font-style: italic; font-weight: 500;
+    color: var(--gold-deep);
+  }
+  .numeral {
+    font-family: var(--sans); font-size: 10.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.32em;
+    color: var(--gold-deep);
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .numeral::before { content: ""; width: 28px; height: 1px; background: var(--gold); }
+  .kicker {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    color: var(--muted); font-size: 18px; line-height: 1.55; margin-top: 18px;
+  }
+  .caption {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    color: var(--muted); font-size: 13px; letter-spacing: 0.02em;
+  }
+
+  .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 36px; }
+  section { padding: 132px 0; position: relative; }
+  section + section { border-top: 1px solid var(--line-soft); }
+
+  /* Nav */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 22px 0;
+    background: rgba(244, 239, 228, 0.72);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
+    border-bottom: 1px solid var(--line-soft);
+    transition: background .3s ease, padding .3s ease;
+  }
+  .nav.scrolled { padding: 14px 0; background: rgba(244, 239, 228, 0.94); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .brand { display: flex; align-items: center; gap: 13px; }
+  .brand img {
+    width: 44px; height: 44px; border-radius: 50%;
+    object-fit: cover; border: 1px solid var(--line-strong);
+  }
+  .brand-text {
+    font-family: var(--display); font-weight: 600;
+    font-size: 17px; letter-spacing: -0.01em; line-height: 1.05; color: var(--text);
+  }
+  .brand-text small {
+    display: block; margin-top: 4px;
+    font-family: var(--sans); font-size: 9px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.34em; color: var(--gold-deep);
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: var(--sans); font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.22em;
+    color: var(--text-soft); transition: color .25s ease;
+  }
+  .nav-links a:hover { color: var(--gold-deep); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 11px;
+    padding: 15px 26px;
+    font-family: var(--sans); font-weight: 600;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em;
+    border: 1px solid var(--text); color: var(--text);
+    background: transparent; cursor: pointer; border-radius: 2px;
+    transition: all .3s cubic-bezier(.2,.6,.2,1);
+  }
+  .btn .arr { width: 14px; height: 1px; background: currentColor; position: relative; transition: width .3s; }
+  .btn .arr::after {
+    content: ""; position: absolute; right: 0; top: -3px;
+    width: 6px; height: 6px;
+    border-top: 1px solid currentColor; border-right: 1px solid currentColor;
+    transform: rotate(45deg);
+  }
+  .btn:hover .arr { width: 22px; }
+  .btn--dark { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .btn--dark:hover { background: var(--bg-deep); }
+  .btn--ghost:hover { background: var(--text); color: var(--bg); }
+
+  /* Hero */
+  .hero { padding: 168px 0 100px; }
+  .masthead {
+    text-align: center;
+    font-family: var(--sans); font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.4em;
+    color: var(--muted); margin: 0 auto 80px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--line);
+    max-width: 760px;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 80px; align-items: center; }
+  .hero-content .numeral { margin-bottom: 26px; }
+  .hero h1 { font-size: clamp(46px, 7vw, 96px); margin-bottom: 28px; }
+  .hero p.lede {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    font-size: clamp(18px, 1.8vw, 22px); line-height: 1.55;
+    color: var(--text-soft); max-width: 460px; margin-bottom: 40px;
+  }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
+  .hero-meta {
+    padding-top: 28px; border-top: 1px solid var(--line);
+    display: flex; gap: 14px; align-items: center;
+    font-family: var(--sans); font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted);
+  }
+  .hero-meta .stars { color: var(--gold); letter-spacing: 2px; font-size: 12px; }
+  .hero-visual { position: relative; aspect-ratio: 4/5; overflow: hidden; }
+  .hero-visual img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(8%) contrast(0.98);
+  }
+  .hero-visual .caption { margin-top: 16px; display: block; }
+
+  /* Section head */
+  .section-head { max-width: 760px; margin-bottom: 64px; }
+  .section-head .numeral { margin-bottom: 22px; }
+  .section-head h2 { font-size: clamp(34px, 5vw, 64px); margin: 0; }
+  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .section-head.center .numeral { justify-content: center; }
+  .section-head.center .kicker { margin-left: auto; margin-right: auto; max-width: 540px; }
+
+  /* Sobre */
+  .sobre-grid { display: grid; grid-template-columns: 0.42fr 0.58fr; gap: 88px; align-items: start; }
+  .prose p { color: var(--text-soft); font-size: 17px; line-height: 1.85; margin-bottom: 22px; }
+  .dropcap {
+    float: left;
+    font-family: var(--display); font-weight: 500;
+    font-size: 64px; line-height: 0.95;
+    margin: 6px 14px 0 0;
+    color: var(--gold-deep);
+  }
+  .pullquote {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    font-size: clamp(22px, 2.4vw, 30px); line-height: 1.45;
+    color: var(--text);
+    padding: 28px 0 28px 28px;
+    margin: 32px 0;
+    border-left: 2px solid var(--gold);
+  }
+  .signature {
+    margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line);
+    font-family: var(--sans); font-size: 14px; color: var(--muted);
+  }
+  .signature em { font-family: var(--display); font-style: italic; color: var(--text-soft); }
+
+  /* Loja */
+  .loja-cta { background: var(--bg-soft); }
+  .loja-split { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 72px; align-items: center; }
+  .loja-visual { position: relative; aspect-ratio: 4/5; overflow: hidden; }
+  .loja-visual img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(6%); }
+  .loja-visual .badge {
+    position: absolute; top: 22px; left: 22px;
+    background: var(--bg-deep); color: var(--bg);
+    font-family: var(--sans); font-size: 9.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.32em;
+    padding: 9px 16px;
+  }
+  .loja-content .numeral { margin-bottom: 22px; }
+  .loja-content h2 { font-size: clamp(38px, 5.6vw, 72px); margin-bottom: 24px; }
+  .loja-content p { color: var(--text-soft); font-size: 17px; line-height: 1.7; max-width: 460px; margin-bottom: 34px; }
+
+  /* Menu */
+  .menu { border-top: 1px solid var(--line); list-style: none; }
+  .menu li {
+    display: grid; grid-template-columns: 1fr auto; align-items: baseline;
+    padding: 22px 4px;
+    border-bottom: 1px solid var(--line-soft);
+    gap: 4px 24px;
+    transition: padding .3s ease;
+  }
+  .menu li:hover { padding-left: 14px; padding-right: 14px; background: var(--bg-soft); }
+  .menu-row { display: flex; align-items: baseline; gap: 14px; }
+  .menu-name { font-family: var(--display); font-weight: 500; font-size: clamp(20px, 2.2vw, 26px); letter-spacing: -0.01em; }
+  .menu-dots { flex: 1; border-bottom: 1px dotted var(--muted-2); transform: translateY(-6px); }
+  .menu-price { font-family: var(--display); font-weight: 500; font-size: clamp(20px, 2.2vw, 26px); color: var(--gold-deep); white-space: nowrap; }
+  .menu-desc { grid-column: 1 / -1; font-family: var(--display); font-style: italic; font-weight: 400; font-size: 14.5px; color: var(--muted); line-height: 1.5; margin-top: 2px; }
+
+  /* Galeria */
+  .galeria { background: var(--bg-soft); }
+  .spread { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; grid-auto-rows: 130px; }
+  .spread figure { margin: 0; overflow: hidden; position: relative; }
+  .spread figure img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(8%);
+    transition: transform .8s cubic-bezier(.2,.6,.2,1);
+  }
+  .spread figure:hover img { transform: scale(1.025); }
+  .spread figure figcaption {
+    position: absolute; left: 14px; bottom: 14px;
+    background: var(--bg);
+    padding: 7px 12px;
+    font-family: var(--sans); font-size: 9.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.24em; color: var(--text);
+  }
+  .spread .f1 { grid-column: span 4; grid-row: span 3; }
+  .spread .f2 { grid-column: span 2; grid-row: span 3; }
+  .spread .f3 { grid-column: span 2; grid-row: span 2; }
+  .spread .f4 { grid-column: span 2; grid-row: span 2; }
+  .spread .f5 { grid-column: span 2; grid-row: span 2; }
+
+  /* Equipa */
+  .profiles { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 900px; margin: 0 auto; }
+  .profile { text-align: center; }
+  .profile-photo { aspect-ratio: 4/5; overflow: hidden; margin-bottom: 22px; }
+  .profile-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: grayscale(10%); }
+  .profile h3 { font-family: var(--display); font-weight: 500; font-size: clamp(26px, 2.6vw, 34px); margin: 0 0 6px; letter-spacing: -0.01em; }
+  .profile .role {
+    font-family: var(--sans); font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.32em; color: var(--gold-deep);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .profile .role::before, .profile .role::after { content: ""; width: 18px; height: 1px; background: var(--gold); }
+  .profile .bio {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    font-size: 15.5px; color: var(--muted); line-height: 1.65;
+    margin: 16px auto 0; max-width: 320px;
+  }
+
+  /* Contactos / colophon */
+  .colophon {
+    border: 1px solid var(--line);
+    padding: 64px 56px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+  }
+  .colophon-block label {
+    display: block;
+    font-family: var(--sans); font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.32em; color: var(--muted-2);
+    margin-bottom: 12px;
+  }
+  .colophon-block p {
+    font-family: var(--display); font-weight: 500;
+    font-size: 19px; line-height: 1.55; color: var(--text); margin: 0;
+  }
+  .colophon-block p a {
+    background-image: linear-gradient(var(--gold), var(--gold));
+    background-position: 0 100%; background-repeat: no-repeat;
+    background-size: 100% 1px; padding-bottom: 1px;
+    transition: color .25s ease;
+  }
+  .colophon-block p a:hover { color: var(--gold-deep); }
+  .colophon-hours { list-style: none; margin: 0; padding: 0; }
+  .colophon-hours li {
+    display: flex; justify-content: space-between;
+    padding: 7px 0;
+    font-family: var(--display); font-weight: 400; font-size: 15px;
+    color: var(--text-soft);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .colophon-hours li:last-child { border-bottom: none; }
+  .colophon-hours li.closed { color: var(--muted-2); font-style: italic; }
+  .colophon-hours li.today { color: var(--gold-deep); font-weight: 500; }
+  .colophon-hours li.today .day::after {
+    content: " · hoje";
+    font-family: var(--sans); font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .colophon-cta { margin-top: 56px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  /* Footer */
+  footer { padding: 56px 0 36px; border-top: 1px solid var(--line); background: var(--bg); }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .footer-brand { display: flex; align-items: center; gap: 14px; }
+  .footer-brand img { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-strong); object-fit: cover; }
+  .footer-brand .name { font-family: var(--display); font-weight: 500; font-size: 15px; }
+  .footer-brand .tag {
+    font-family: var(--sans); font-size: 10px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.32em; color: var(--gold-deep); margin-top: 3px;
+  }
+  .footer-social { display: flex; gap: 14px; }
+  .footer-social a {
+    width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%;
+    display: grid; place-items: center; color: var(--text);
+    transition: all .25s ease;
+  }
+  .footer-social a:hover { border-color: var(--gold); color: var(--gold-deep); }
+  .footer-meta {
+    font-family: var(--sans); font-size: 10.5px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.22em; color: var(--muted);
+  }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 960px) {
+    section { padding: 84px 0; }
+    .container { padding: 0 24px; }
+    .hero { padding: 130px 0 60px; }
+    .masthead { margin-bottom: 48px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+    .sobre-grid { grid-template-columns: 1fr; gap: 36px; }
+    .loja-split { grid-template-columns: 1fr; gap: 36px; }
+    .loja-visual { aspect-ratio: 16/10; max-width: 480px; margin: 0 auto; }
+    .spread { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; gap: 14px; }
+    .spread > * { grid-column: span 1 !important; grid-row: span 1 !important; }
+    .spread .f1 { grid-column: 1 / -1 !important; grid-row: span 2 !important; }
+    .profiles { grid-template-columns: 1fr; max-width: 360px; gap: 44px; }
+    .colophon { grid-template-columns: 1fr; gap: 36px; padding: 40px 32px; }
+    .nav-links { display: none; }
+    .footer-inner { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+
+<body>
+
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand">
+      <img src="assets/logo.jpg" alt="King's Club Barbearia" />
+      <span class="brand-text">King's Club<small>Atelier · Torres Vedras</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre">A Casa</a></li>
+      <li><a href="#servicos">A Carta</a></li>
+      <li><a href="#equipa">Os Mestres</a></li>
+      <li><a href="#contactos">Visite</a></li>
+    </ul>
+    <a href="#contactos" class="btn btn--dark">Marcar <span class="arr"></span></a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container">
+    <div class="masthead">King's Club · Atelier de Barbearia · Torres Vedras · No. 001</div>
+    <div class="hero-grid">
+      <div class="hero-content">
+        <span class="numeral">Estabelecido em Torres Vedras</span>
+        <h1 class="display">A casa do<br/>bom <em>corte</em>.</h1>
+        <p class="lede">Atelier de barbearia onde cada visita tem o tempo, o método e o cuidado de um verdadeiro ofício.</p>
+        <div class="hero-cta">
+          <a href="#contactos" class="btn btn--dark">Marcar visita <span class="arr"></span></a>
+          <a href="#sobre" class="btn btn--ghost">Conhecer o atelier</a>
+        </div>
+        <div class="hero-meta">
+          <span class="stars">★★★★★</span>
+          <span>5,0 · 22 opiniões · Google</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1400&q=80" alt="Interior da King's Club" />
+        <span class="caption">O atelier — Praceta J. C. Mesquita, Torres Vedras</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="section-head reveal">
+        <span class="numeral">I — A casa</span>
+        <h2 class="display">Há um silêncio que se sente quando o trabalho é bem feito.</h2>
+      </div>
+      <div class="prose reveal">
+        <p><span class="dropcap">N</span>a King's Club, esse silêncio é a nossa marca. Não cortamos cabelo à pressa: damos a cada cliente o tempo, o método e o respeito de um verdadeiro ofício.</p>
+        <p>O Rodrigo fundou esta casa com uma ideia simples — tratar cada homem como rei. Cada cadeira é um pequeno trono, cada visita um intervalo cuidado do dia.</p>
+        <blockquote class="pullquote">"Cuidar da imagem é um ato de respeito — por si mesmo e por quem o rodeia."</blockquote>
+        <p>Juntámos a tradição da barbearia clássica ao estilo de hoje, num espaço pensado para conversar, abrandar e sair a sentir-se renovado.</p>
+        <div class="signature">Rodrigo · <em>Fundador &amp; Master Barber</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="loja" class="loja-cta">
+  <div class="container">
+    <div class="loja-split reveal">
+      <div class="loja-visual">
+        <img src="https://images.unsplash.com/photo-1567894340315-735d7c361db0?auto=format&fit=crop&w=1200&q=80" alt="O ritual King's Club" />
+        <span class="badge">Em breve</span>
+      </div>
+      <div class="loja-content">
+        <span class="numeral">II — A loja</span>
+        <h2 class="display">Em casa, como<br/>na <em>cadeira</em>.</h2>
+        <p>Os mesmos produtos que usamos no teu corte — pomadas, óleos, bálsamos. Em breve poderás levar o ritual King's Club para casa.</p>
+        <a href="../loja/" class="btn btn--dark">Conhecer a loja <span class="arr"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicos">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="numeral">III — A carta</span>
+      <h2 class="display">Serviços <em>&amp;</em> preços</h2>
+      <p class="kicker">Cada serviço com tempo e método. Sem pressa.</p>
+    </div>
+    <ul class="menu reveal">
+      <li><div class="menu-row"><span class="menu-name">Corte de Cabelo</span><span class="menu-dots"></span><span class="menu-price">14€</span></div><div class="menu-desc">Corte à medida, com tesoura e máquina e contornos bem definidos.</div></li>
+      <li><div class="menu-row"><span class="menu-name">Barba</span><span class="menu-dots"></span><span class="menu-price">10€</span></div><div class="menu-desc">Barba aparada e desenhada com acabamento cuidado.</div></li>
+      <li><div class="menu-row"><span class="menu-name">Corte Social</span><span class="menu-dots"></span><span class="menu-price">13€</span></div><div class="menu-desc">Corte clássico e discreto, sempre elegante.</div></li>
+      <li><div class="menu-row"><span class="menu-name">Cabelo &amp; Barba</span><span class="menu-dots"></span><span class="menu-price">20€</span></div><div class="menu-desc">O combo completo: corte de cabelo e barba.</div></li>
+      <li><div class="menu-row"><span class="menu-name">Corte Rapadela</span><span class="menu-dots"></span><span class="menu-price">9€</span></div><div class="menu-desc">Corte rápido à máquina, do início ao fim.</div></li>
+      <li><div class="menu-row"><span class="menu-name">Contornos</span><span class="menu-dots"></span><span class="menu-price">7€</span></div><div class="menu-desc">Acabamento e definição dos contornos.</div></li>
+      <li><div class="menu-row"><span class="menu-name">Sobrancelha</span><span class="menu-dots"></span><span class="menu-price">3€</span></div><div class="menu-desc">Alinhamento e definição da sobrancelha.</div></li>
+      <li><div class="menu-row"><span class="menu-name">Corte &amp; Sobrancelha</span><span class="menu-dots"></span><span class="menu-price">16€</span></div><div class="menu-desc">Corte de cabelo com a sobrancelha alinhada.</div></li>
+      <li><div class="menu-row"><span class="menu-name">Lavar Cabelo</span><span class="menu-dots"></span><span class="menu-price">3€</span></div><div class="menu-desc">Lavagem do cabelo com produtos profissionais.</div></li>
+      <li><div class="menu-row"><span class="menu-name">Corte &amp; Lavar Cabelo</span><span class="menu-dots"></span><span class="menu-price">16€</span></div><div class="menu-desc">Corte de cabelo com lavagem incluída.</div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="galeria" class="galeria">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="numeral">IV — Detalhes</span>
+      <h2 class="display">O atelier <em>por dentro</em>.</h2>
+    </div>
+    <div class="spread reveal">
+      <figure class="f1"><img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=1400&q=80" alt="O corte" /><figcaption>i. O corte</figcaption></figure>
+      <figure class="f2"><img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=80" alt="Navalha" /><figcaption>ii. Navalha</figcaption></figure>
+      <figure class="f3"><img src="https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?auto=format&fit=crop&w=1000&q=80" alt="Espaço" /><figcaption>iii. Espaço</figcaption></figure>
+      <figure class="f4"><img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=1000&q=80" alt="Detalhe" /><figcaption>iv. Detalhe</figcaption></figure>
+      <figure class="f5"><img src="https://images.unsplash.com/photo-1521322714240-ee1d383eab62?auto=format&fit=crop&w=1000&q=80" alt="Ofício" /><figcaption>v. Ofício</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="equipa">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="numeral">V — Os mestres</span>
+      <h2 class="display">A equipa.</h2>
+      <p class="kicker">Dois ofícios. Uma só obsessão pelo detalhe.</p>
+    </div>
+    <div class="profiles">
+      <article class="profile reveal">
+        <div class="profile-photo">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80" alt="Rodrigo" />
+        </div>
+        <h3 class="display">Rodrigo</h3>
+        <span class="role">Fundador · Master Barber</span>
+        <p class="bio">Fundou a casa para tratar cada cliente como rei. Mão de mestre nos cortes clássicos e nos contornos à navalha.</p>
+      </article>
+      <article class="profile reveal">
+        <div class="profile-photo">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80" alt="André Costa" />
+        </div>
+        <h3 class="display">André Costa</h3>
+        <span class="role">Barber</span>
+        <p class="bio">Mão firme e olho para o detalhe. Domina o fade moderno e o ritual completo de barba como ninguém.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contactos">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="numeral">VI — Visite</span>
+      <h2 class="display">A morada.</h2>
+    </div>
+
+    <div class="colophon reveal">
+      <div class="colophon-block">
+        <label>Endereço</label>
+        <p><a href="https://www.google.com/maps/search/Kings+Club+Barbearia+Torres+Vedras" target="_blank" rel="noopener">Praceta Prof. José Carvalho Mesquita 6, loja 11<br/>2560-271 Torres Vedras</a></p>
+        <label style="margin-top:32px">Contacto</label>
+        <p><a href="tel:+351926923540">+351 926 923 540</a><br/><a href="https://www.instagram.com/kingsclubbarbearia1" target="_blank" rel="noopener">@kingsclubbarbearia1</a></p>
+      </div>
+      <div class="colophon-block">
+        <label>Horário</label>
+        <ul class="colophon-hours">
+          <li data-day="1"><span class="day">Segunda-feira</span><span>09:00 — 20:30</span></li>
+          <li data-day="2"><span class="day">Terça-feira</span><span>09:00 — 20:30</span></li>
+          <li data-day="3"><span class="day">Quarta-feira</span><span>09:00 — 20:30</span></li>
+          <li data-day="4"><span class="day">Quinta-feira</span><span>09:00 — 20:30</span></li>
+          <li data-day="5"><span class="day">Sexta-feira</span><span>09:00 — 20:30</span></li>
+          <li data-day="6"><span class="day">Sábado</span><span>09:00 — 19:00</span></li>
+          <li data-day="0" class="closed"><span class="day">Domingo</span><span>encerrado</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="colophon-cta reveal">
+      <a href="https://wa.me/351926923540" class="btn btn--dark">Marcar via WhatsApp <span class="arr"></span></a>
+      <a href="tel:+351926923540" class="btn btn--ghost">Ligar agora</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/logo.jpg" alt="King's Club Barbearia" />
+      <div>
+        <div class="name">King's Club Barbearia</div>
+        <div class="tag">Atelier · Torres Vedras</div>
+      </div>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/kingsclubbarbearia1" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      </a>
+      <a href="https://wa.me/351926923540" aria-label="WhatsApp" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.4 8.4 0 0 1-12.7 7.3L3 21l2.3-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg>
+      </a>
+    </div>
+    <div class="footer-meta">No. 001 · MMXXVI · Todos os direitos reservados</div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 30); });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const todayIdx = new Date().getDay();
+  document.querySelectorAll('.colophon-hours li').forEach(li => {
+    if (Number(li.dataset.day) === todayIdx) li.classList.add('today');
+  });
+</script>
+</body>
+</html>
