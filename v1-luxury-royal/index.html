@@ -373,34 +373,66 @@
   .booking-cta { margin-top: 74px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .booking-cta .btn { padding: 21px 46px; font-size: 12px; }
 
-  /* ===== Loja CTA (split) ===== */
-  .loja-cta { background: var(--surface); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
-  .loja-split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: center; }
-  .loja-visual {
-    position: relative; aspect-ratio: 4/5;
+  /* ===== Loja — dark contrasting band ===== */
+  .loja-cta {
+    background: var(--bg-deep);
+    border-top: 1px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
+    position: relative; overflow: hidden;
+  }
+  .loja-cta::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
     background:
-      linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55)),
-      url("https://images.unsplash.com/photo-1567894340315-735d7c361db0?auto=format&fit=crop&w=1200&q=80") center/cover;
-    border-radius: 4px; border: 1px solid var(--line-soft); overflow: hidden;
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(203,165,92,0.10), transparent 70%),
+      radial-gradient(ellipse 70% 50% at 50% 100%, rgba(203,165,92,0.06), transparent 70%);
   }
-  .loja-badge {
-    position: absolute; top: 20px; left: 20px;
-    background: var(--gold); color: #14110A;
-    font-family: var(--display); font-weight: 700; font-size: 10.5px;
-    text-transform: uppercase; letter-spacing: 0.24em;
-    padding: 9px 16px; border-radius: 2px;
+  .loja-cta .container { position: relative; z-index: 1; }
+  .loja-head { text-align: center; margin-bottom: 78px; }
+  .loja-head .eyebrow { margin-bottom: 22px; }
+  .loja-head h2 { font-size: clamp(40px, 6.2vw, 80px); margin-bottom: 22px; line-height: 1.03; }
+  .loja-head p { color: var(--muted); font-size: 17px; line-height: 1.7; max-width: 560px; margin: 0 auto; }
+  .loja-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 64px; }
+  .product-card {
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 4px;
+    padding: 44px 30px 34px;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    transition: border-color .35s ease, transform .35s ease, background .35s ease;
+    position: relative;
   }
-  .loja-content { text-align: left; }
-  .loja-content .eyebrow { margin-bottom: 20px; display: inline-flex; }
-  .loja-content h2 { font-size: clamp(36px, 5.4vw, 72px); margin-bottom: 24px; line-height: 1.05; }
-  .loja-content p { color: var(--muted); font-size: 17px; line-height: 1.7; max-width: 440px; margin-bottom: 36px; }
-  .loja-content .btn { padding: 22px 48px; font-size: 12px; }
+  .product-card::after {
+    content: ""; position: absolute; left: 50%; top: 0; transform: translateX(-50%);
+    width: 0; height: 1px; background: var(--gold);
+    transition: width .5s ease;
+  }
+  .product-card:hover { border-color: var(--line-strong); transform: translateY(-4px); background: var(--surface-hi); }
+  .product-card:hover::after { width: 60%; }
+  .product-vessel { width: 90px; height: 120px; margin-bottom: 28px; color: var(--gold); opacity: 0.9; }
+  .product-vessel svg { width: 100%; height: 100%; display: block; }
+  .product-card .vol {
+    font-family: var(--display); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .product-card .pname {
+    font-family: var(--display); font-size: 19px; font-weight: 600;
+    color: var(--text); margin-bottom: 10px; letter-spacing: -0.005em;
+  }
+  .product-card .pdesc {
+    font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 240px;
+  }
+  .loja-foot { text-align: center; }
+  .loja-foot .btn { padding: 22px 52px; font-size: 12px; }
+  .loja-foot .release {
+    display: block; margin-top: 22px;
+    font-family: var(--display); font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted-2);
+  }
   @media (max-width: 880px) {
-    .loja-split { grid-template-columns: 1fr; gap: 36px; }
-    .loja-visual { aspect-ratio: 16/10; max-width: 460px; margin: 0 auto; }
-    .loja-content { text-align: center; }
-    .loja-content .eyebrow { justify-content: center; }
-    .loja-content p { margin-left: auto; margin-right: auto; }
+    .loja-products { grid-template-columns: 1fr; gap: 18px; max-width: 380px; margin-left: auto; margin-right: auto; }
+    .loja-head { margin-bottom: 52px; }
   }
 
   /* ===== Footer ===== */
@@ -491,18 +523,64 @@
   </div>
 </section>
 
-<section class="loja-cta">
+<section class="loja-cta" id="loja">
   <div class="container">
-    <div class="loja-split reveal">
-      <div class="loja-visual">
-        <div class="loja-badge">Em breve</div>
-      </div>
-      <div class="loja-content">
-        <span class="eyebrow">A loja</span>
-        <h2 class="display">Em casa, como<br/>na <em>cadeira</em>.</h2>
-        <p>Os mesmos produtos que usamos no teu corte — pomadas, óleos, bálsamos. Em breve poderás levar o ritual King's Club para casa.</p>
-        <a href="../loja/" class="btn btn--solid">Conhecer a loja <span class="arr"></span></a>
-      </div>
+    <div class="loja-head reveal">
+      <span class="eyebrow">A loja</span>
+      <h2 class="display">Em casa, como na <em>cadeira</em>.</h2>
+      <p>Os mesmos produtos que usamos no teu corte. Pomadas, óleos e bálsamos com a assinatura King's Club — em breve à venda no salão e online.</p>
+    </div>
+
+    <div class="loja-products reveal">
+      <article class="product-card">
+        <div class="product-vessel" aria-hidden="true">
+          <svg viewBox="0 0 90 120" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="16" y="20" width="58" height="14"/>
+            <rect x="10" y="34" width="70" height="74"/>
+            <rect x="22" y="58" width="46" height="32" stroke-opacity="0.5" stroke-width="0.8"/>
+            <path d="M38 76 L45 70 L52 76 M45 70 V78"/>
+          </svg>
+        </div>
+        <div class="vol">Vol. 100ml</div>
+        <div class="pname">Pomada Royal</div>
+        <div class="pdesc">Fixação média, brilho suave. Base de cera de abelha e óleo de argan.</div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-vessel" aria-hidden="true">
+          <svg viewBox="0 0 90 120" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="37" y="8" width="16" height="20"/>
+            <path d="M24 28 Q24 44 24 46 L24 108 L66 108 L66 46 Q66 44 66 28 Z"/>
+            <rect x="30" y="60" width="30" height="34" stroke-opacity="0.5" stroke-width="0.8"/>
+            <path d="M38 76 L45 70 L52 76 M45 70 V78"/>
+          </svg>
+        </div>
+        <div class="vol">Vol. 50ml</div>
+        <div class="pname">Óleo de Barba</div>
+        <div class="pdesc">Hidratação profunda. Cedro, bergamota e óleo de jojoba.</div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-vessel" aria-hidden="true">
+          <svg viewBox="0 0 90 120" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="34" y="6" width="22" height="16"/>
+            <rect x="38" y="22" width="14" height="6"/>
+            <path d="M22 32 L26 28 L64 28 L68 32 L68 102 L22 102 Z"/>
+            <line x1="22" y1="102" x2="68" y2="110"/>
+            <line x1="68" y1="102" x2="22" y2="110"/>
+            <rect x="28" y="50" width="34" height="30" stroke-opacity="0.5" stroke-width="0.8"/>
+            <path d="M38 66 L45 60 L52 66 M45 60 V68"/>
+          </svg>
+        </div>
+        <div class="vol">Vol. 75ml</div>
+        <div class="pname">Bálsamo Pós-barba</div>
+        <div class="pdesc">Acalma e refresca. Sândalo, hamamélis e manteiga de karité.</div>
+      </article>
+    </div>
+
+    <div class="loja-foot reveal">
+      <a href="../loja/" class="btn btn--solid">Visitar a loja <span class="arr"></span></a>
+      <span class="release">Lançamento — Verão 2026</span>
     </div>
   </div>
 </section>
