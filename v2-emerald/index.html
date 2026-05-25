@@ -331,13 +331,35 @@
   .cta-band .btn { padding: 18px 40px; font-size: 12px; }
   .cta-actions { display: flex; gap: 13px; justify-content: center; flex-wrap: wrap; }
 
-  /* ===== Loja CTA ===== */
+  /* ===== Loja CTA (split) ===== */
   .loja-cta { background: var(--surface); border-top: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
-  .loja-inner { text-align: center; max-width: 620px; margin: 0 auto; }
-  .loja-inner .eyebrow { justify-content: center; margin-bottom: 18px; display: inline-flex; }
-  .loja-inner h2 { font-size: clamp(34px, 5vw, 64px); margin-bottom: 22px; }
-  .loja-inner p { color: var(--muted); font-size: 17px; line-height: 1.7; max-width: 540px; margin: 0 auto 36px; }
-  .loja-inner .btn { padding: 22px 48px; font-size: 12px; }
+  .loja-split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items: center; }
+  .loja-visual {
+    position: relative; aspect-ratio: 4/5;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55)),
+      url("https://images.unsplash.com/photo-1567894340315-735d7c361db0?auto=format&fit=crop&w=1200&q=80") center/cover;
+    border-radius: 4px; border: 1px solid var(--line-soft); overflow: hidden;
+  }
+  .loja-badge {
+    position: absolute; top: 20px; left: 20px;
+    background: var(--gold); color: #14110A;
+    font-family: var(--display); font-weight: 700; font-size: 10.5px;
+    text-transform: uppercase; letter-spacing: 0.24em;
+    padding: 9px 16px; border-radius: 2px;
+  }
+  .loja-content { text-align: left; }
+  .loja-content .eyebrow { margin-bottom: 20px; display: inline-flex; }
+  .loja-content h2 { font-size: clamp(36px, 5.4vw, 72px); margin-bottom: 24px; line-height: 1.05; }
+  .loja-content p { color: var(--muted); font-size: 17px; line-height: 1.7; max-width: 440px; margin-bottom: 36px; }
+  .loja-content .btn { padding: 22px 48px; font-size: 12px; }
+  @media (max-width: 880px) {
+    .loja-split { grid-template-columns: 1fr; gap: 36px; }
+    .loja-visual { aspect-ratio: 16/10; max-width: 460px; margin: 0 auto; }
+    .loja-content { text-align: center; }
+    .loja-content .eyebrow { justify-content: center; }
+    .loja-content p { margin-left: auto; margin-right: auto; }
+  }
 
   /* ===== Contactos ===== */
   .contact-grid { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 18px; align-items: stretch; }
@@ -619,11 +641,16 @@
 <!-- ===== LOJA ===== -->
 <section class="loja-cta">
   <div class="container">
-    <div class="loja-inner reveal">
-      <span class="eyebrow">Em breve</span>
-      <h2 class="display">A nossa <em>loja</em>.</h2>
-      <p>Em breve poderás levar a King's Club para casa — produtos selecionados pelos nossos mestres.</p>
-      <a href="../loja/" class="btn btn--solid">Conhecer a loja <span class="arr"></span></a>
+    <div class="loja-split reveal">
+      <div class="loja-visual">
+        <div class="loja-badge">Em breve</div>
+      </div>
+      <div class="loja-content">
+        <span class="eyebrow">A loja</span>
+        <h2 class="display">Em casa, como<br/>na <em>cadeira</em>.</h2>
+        <p>Os mesmos produtos que usamos no teu corte — pomadas, óleos, bálsamos. Em breve poderás levar o ritual King's Club para casa.</p>
+        <a href="../loja/" class="btn btn--solid">Conhecer a loja <span class="arr"></span></a>
+      </div>
     </div>
   </div>
 </section>
